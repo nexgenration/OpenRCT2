@@ -717,6 +717,8 @@ public: // Peep
     static Peep* Generate(const CoordsXYZ coords);
     void RemoveFromQueue();
     void RemoveFromRide();
+    //moved peep_insert_new_thought here as a member function
+    //changed name from peep_insert_new_thought to InsertNewThought
     void InsertNewThought(PeepThoughtType thought_type, uint8_t thought_arguments);
 
     // TODO: Make these private again when done refactoring

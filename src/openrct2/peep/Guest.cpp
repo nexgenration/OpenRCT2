@@ -5110,6 +5110,10 @@ static bool peep_find_ride_to_look_at(Peep* peep, uint8_t edge, uint8_t* rideToV
  * ah:thoughtArguments
  * esi: peep
  */
+//Moved function definition to this file from Peep.cpp, as requested in issue #9197
+//Removed Peep* peep as an argument since it is not a member function of the Guest struct, which inherits from Peep
+//Replaced "peep->" with "this->" due to the removal of Peep* peep as an argument
+//Changed all variables to use camelCase
 void Peep::InsertNewThought(PeepThoughtType thoughtType, uint8_t thoughtArguments)
 {
     PeepActionType action = PeepThoughtToActionMap[thoughtType].action;
