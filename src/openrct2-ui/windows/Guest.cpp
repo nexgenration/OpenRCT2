@@ -479,6 +479,7 @@ static constexpr const uint32_t window_guest_page_enabled_widgets[] = {
     (1 << WIDX_TAB_7)
 };
 
+//Increased max window hight to adjust for the added text
 static constexpr const rct_size16 window_guest_page_sizes[][2] = {
     { 192, 159, 500, 450 },     // WINDOW_GUEST_OVERVIEW
     { 192, 180, 192, 180 },     // WINDOW_GUEST_STATS
@@ -2067,10 +2068,16 @@ void window_guest_debug_paint(rct_window* w, rct_drawpixelinfo* dpi)
     auto peep = GET_PEEP(w->number);
     auto x = w->x + window_guest_debug_widgets[WIDX_PAGE_BACKGROUND].left + 4;
     auto y = w->y + window_guest_debug_widgets[WIDX_PAGE_BACKGROUND].top + 4;
+    //Created new scope block to avoid polluting the current scope
     {
+        //Called this function over making an array that holds only one element.
+        //Creating a single non-array variable won't work with the gfx_draw_string_left function
+        //fills the gCommonFromatArgs buffer
         set_format_arg(0, uint32_t, peep->sprite_index);
+        //Draws the string
         gfx_draw_string_left(dpi, STR_PEEP_DEBUG_SPRITE_INDEX, gCommonFromatArgs, 0 x, y);
     }
+    //adjusts y-value of text position to account for my new line
     y += LIST_ROW_HEIGHT;
     {
         int32_t args[] = { peep->x, peep->y, peep->x };

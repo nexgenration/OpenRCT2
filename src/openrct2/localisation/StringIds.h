@@ -3955,6 +3955,7 @@ enum
 
     STR_DESYNC_REPORT = 6318,
 
+    //Created sprite id for the string i created
     STR_PEEP_DEBUG_SPRITE_INDEX = 6319,
 
     // Have to include resource strings (from scenarios and objects) for the time being now that language is partially working
